@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* body {
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #161616;
+  background-color: #f3f3f3;
+} */
+body {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg") center center no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  background: linear-gradient(
+    62deg,
+    #16b1d8 0%,
+    #3455be 100%
+  );
+  /* сайт на всю страницу */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+
+  min-block-size: 100vh;
+  min-block-size: 100dvh;
+
+  display: grid;
+
+  grid-template-columns: 5rem 1fr;
+
+  grid-template-rows: auto 1fr auto;
+
+  grid-template-areas: 
+    "header header"
+    "main main"
+    "footer footer";
+  grid-template-areas:
+    "sidebar header"
+    "main main"
+    "footer footer";
+  transition: grid-template-columns 0.3s ease;
+  
+}
+
+
+
+
+.dashboard-main {
+  grid-area: main;
+  padding: 1.25rem;
+  display: grid;
+  gap: 1rem;
+  max-height: 15rem;
+  align-items: center;
+  justify-items: center;
+  margin-top: -500px;
+  margin-left: 20px;
+  
+}
+
+
+.contact-us {
+  background: #f8f4e5;
+  padding: 50px 100px;
+  border: 2px solid black;
+  box-shadow: 15px 15px 1px #fbab7e, 15px 15px 1px 2px black;
+}
+
+input {
+  display: block;
+  width: 100%;
+  font-size: 14pt;
+  line-height: 28pt;
+  font-family: "Fjalla One";
+  margin-bottom: 28pt;
+  border: none;
+  border-bottom: 5px solid black;
+  background: #f8f4e5;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: black;
+  
+}
+
+input:focus {
+  border-bottom: 5px solid #fbab7e;
+}
+
+.buttonform {
+  display: block;
+  margin: 0 auto;
+  line-height: 28pt;
+  padding: 0 20px;
+  background: #fbab7e;
+  letter-spacing: 2px;
+  transition: 0.2s all ease-in-out;
+  outline: none;
+  border: 1px solid black;
+  box-shadow: 3px 3px 1px 1px #95a4ff, 3px 3px 1px 2px black;
+}
+.buttonform:hover {
+  background: black;
+  color: white;
+  border: 1px solid black;
+}
+
+::selection {
+  background: #ffc8ff;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  border-bottom: 5px solid #95a4ff;
+  -webkit-text-fill-color: #2A293E;
+  -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+
+/* dashboard-header + animation Header */
+.dashboard-header {
+  grid-area: header;
+  background-color: inherit;
+  padding: 1.25rem;
+
+  /* Центрирование содержимого */
+  display: flex;
+  justify-content: center; /* Горизонтальное центрирование */
+  align-items: center; /* Вертикальное центрирование */
+  height: 180px; /* Высота на весь экран */
+  text-align: center;
+  
+}
+
+
+
+
+
+.button-52 {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 220px;
+}
+
+.button-52:after {
+  content: "";
+  background-color: #95a4ff;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.button-52:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  .button-52 {
+    padding: 13px 50px 13px;
+  }
+}
+
+
+
+
+
+

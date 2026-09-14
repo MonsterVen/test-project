@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="adminstyle.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="images/smalllogo.png">
+            <h1>AdminPage</h1>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <p>Добавьте своё приложение!</p>
+            <form id="add-card-form">
+                <label>Название программы: <input type="text" id="name" required></label><br>
+                <label>Краткое описание: <textarea id="disc" required></textarea></label><br>
+                <label>Категория приложения: 
+                    <select id="tag" required>
+                        <option value="browsers">Browsers</option>
+                        <option value="game">Game</option>
+                        <option value="messaging">Messaging</option>
+                        <option value="utility">Utility</option>
+                        <option value="development">Development</option>
+                        <option value="media">Media</option>
+                        <option value="design">Design</option>
+                    </select>
+                </label><br>
+                <label>Ссылка на скачивание: <textarea id="place" required></textarea></label><br>
+                <label>Icon name (Пример: vscode.svg): <input type="text" id="img" required></label><br>
+                <button type="submit">Send</button>
+            </form>
+            <p id="response-message" style="color: green; font-weight: bold;"></p>
+        </div>
+    </main>
+    
+    <script>
+        // JavaScript для отправки данных формы на сервер
+        document.getElementById("add-card-form").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Предотвращаем стандартное поведение формы
+
+            const name = document.getElementById("name").value.trim();
+            const disc = document.getElementById("disc").value.trim();
+            const tag = document.getElementById("tag").value; // Получаем значение из выпадающего списка
+            const place = document.getElementById("place").value.trim();
+            const img = document.getElementById("img").value.trim();
+
+            const formData = new FormData();
+            formData.append("name", name);
+            formData.append("disc", disc);
+            formData.append("tag", tag);
+            formData.append("place", place);
+            formData.append("img", img);
+
+            try {
+                const response = await fetch("add_card.php", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                const result = await response.json();
+                const messageElement = document.getElementById("response-message");
+
+                if (result.success) {
+                    messageElement.style.color = "green";
+                    messageElement.textContent = "Приложение успешно добавлено!";
+                } else {
+                    messageElement.style.color = "red";
+                    messageElement.textContent = "Ошибка: " + (result.message || "Не удалось добавить приложение.");
+                }
+            } catch (error) {
+                console.error("Ошибка при отправке данных:", error);
+                document.getElementById("response-message").textContent = "Ошибка при подключении к серверу.";
+            }
+        });
+    </script>
+</body>
+</html>
+

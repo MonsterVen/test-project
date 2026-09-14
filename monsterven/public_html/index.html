@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="images/smalllogo.png">
+    <title>FastUpload</title>
+</head>
+<style>
+    /* Поведение эдементов при изменении экрана */
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+  
+}
+
+
+@media (width >= 1200px)  {
+  .dashboard-main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .card-1 {
+    grid-column: span 3;
+  }
+}
+
+/*  
+@media (width >= 768px)  {
+  .card {
+    grid-column: span 2;
+  }
+  .card-1 {
+    /* grid-row-start: 1;
+    grid-row-end: 2; 
+    grid-row: 1 / 2; 
+*/      /*
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-column: 1 / 5; 
+    grid-column: span 4;
+
+  }
+} 
+*/
+/* Profile */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav-item1 {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5rem;
+  transition: background-color 0.3s;
+  gap: 1rem;
+  font-size: 40px;
+  margin-top: 10px;
+}
+
+.nav-item1:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* dashboard-header + animation Header */
+.dashboard-header {
+  grid-area: header;
+  background-color: inherit;
+  padding: 1.25rem;
+
+  /* Центрирование содержимого */
+  display: flex;
+  justify-content: center; /* Горизонтальное центрирование */
+  align-items: center; /* Вертикальное центрирование */
+
+}
+
+.dashboard-header h1 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 6em; /* Большой размер текста */
+  position: relative; /* Для анимации */
+  margin: 0; /* Убираем отступы */
+  color: transparent;
+  -webkit-text-stroke: 2px #000000; /* Обводка текста */
+}
+
+.dashboard-header h1::after {
+  content: "Fast ∞ Upload";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #16b1d8; /* Цвет заливки текста */
+  animation: animate 8s ease-in-out infinite; /* Анимация */
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    clip-path: polygon(
+      0% 45%,
+      16% 44%,
+      33% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
+  }
+
+  50% {
+    clip-path: polygon(
+      0% 60%,
+      15% 65%,
+      34% 66%,
+      51% 62%,
+      67% 50%,
+      84% 45%,
+      100% 46%,
+      100% 100%,
+      0% 100%
+    );
+  }
+}
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+ 
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+/* Стили для ссылки прокрутки */
+.scroll-top-link {
+    position: absolute;
+    bottom: 20px; /* Отступ от нижнего края */
+    left: 50%; /* Размещаем по центру сайдбара */
+    transform: translateX(-50%); /* Смещаем кнопку назад на половину её ширины */
+    background-color: #444;
+    color: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* Убираем подчёркивание */
+    opacity: 0; /* Начально скрыта */
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-top-link.show {
+    opacity: 1; /* Плавное появление */
+    visibility: visible;
+}
+
+.scroll-top-link:hover {
+    background-color: #555;
+    transform: translateX(-50%) scale(1.1); /* Центрирование + увеличение при наведении */
+}
+
+.scroll-top-link i {
+    font-size: 1.2rem;
+}
+
+
+</style>
+
+<body>
+        <header class="dashboard-header">
+            <h1 align-items="center">Fast <span>&#8734;</span> Upload</h1>
+        </header>
+        <!-- курсор -->
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+<!-- курсор -->
+
+        <aside class="dashboard-sidebar">
+            <div class="logo"><a href="profile.html" class="nav-item1"><i class="fa fa-user-circle" aria-hidden="true"></i></a></div>
+            <button id="resize">
+                &#9776;
+            </button>
+            
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item" data-filter="all">
+                    <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                    </svg>
+                    <span class="nav-text">All Cards</span>
+                </a>
+                
+                <a href="#" class="nav-item" data-filter="development">
+                    <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                    </svg>
+                    <span class="nav-text">Development</span>
+                </a>
+                
+                <a href="#" class="nav-item" data-filter="design">
+                    <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                    </svg>
+                    <span class="nav-text">Design</span>
+                </a>
+                <a href="#" class="nav-item" data-filter="browsers">
+                    <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                    <span class="nav-text">Browsers</span>
+                </a>
+                
+                <a href="#" class="nav-item" data-filter="game">
+                    <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                    </svg>
+                    <span class="nav-text">Games</span>
+                </a>
+                
+                <a href="#" class="nav-item" data-filter="utility">
+                    <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+                    </svg>
+                    <span class="nav-text">Utilities</span>
+                </a>
+                <a href="#" class="nav-item" data-filter="messaging">
+                    <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/>
+                    </svg>
+                    <span class="nav-text">Messaging</span>
+                </a>
+                
+                <a href="#" class="nav-item" data-filter="media">
+                    <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM8 15c0-1.66 1.34-3 3-3 .35 0 .69.07 1 .18V6h5v2h-3v7.03c-.02 1.64-1.35 2.97-3 2.97-1.66 0-3-1.34-3-3z"/>
+                    </svg>
+                    <span class="nav-text">Media</span>
+                </a>
+                <a href="#" id="scrollToTopLink" class="scroll-top-link">
+                    <i class="fa fa-arrow-up"></i>
+                </a>
+
+            </nav>
+        </aside>
+        <main class="dashboard-main">
+            <div class="card-1">
+                <h2>Поисковик</h2>
+                <div class="form">
+                    <input type="text" id="search" placeholder="Искать здесь...">            
+                </div>
+                <button class="button-74" onclick="sortCards()">Sort</button>
+            </div>
+
+            <script src="script.js"></script>
+
+            
+            
+        </main>
+
+<script>
+
+ // Функция для фильтрации карточек
+ $(document).ready(function() {
+    $('#search').on('keyup', function() {
+        var searchTerm = $(this).val().toLowerCase(); // Получаем значение из поля поиска и приводим к нижнему регистру
+        $('.dashboard-main .card').each(function() {
+            // Проверяем, если это card-1, пропускаем
+            if ($(this).hasClass('card-1')) {
+                return; // Пропускаем обработку
+            }
+
+            var itemText = $(this).text().toLowerCase(); // Получаем текст элемента и приводим к нижнему регистру
+            if (itemText.indexOf(searchTerm) !== -1) {
+                $(this).show(); // Если текст элемента содержит поисковый запрос, показываем элемент
+            } else {
+                $(this).hide(); // Иначе скрываем
+            }
+        });
+    });
+});
+
+
+
+//функция для сортировки карточек
+function sortCards() {
+    const container = document.querySelector(".dashboard-main");
+    const cards = Array.from(container.querySelectorAll(".card"));
+    const excludedCard = container.querySelector(".card-1");
+    const cardsToSort = cards.filter(card => card !== excludedCard);
+
+    let dir = container.getAttribute("data-sort-dir") || "asc";
+
+    const sortedCards = cardsToSort.sort((a, b) => {
+        const titleA = a.querySelector(".title")?.textContent.trim().toLowerCase() || "";
+        const titleB = b.querySelector(".title")?.textContent.trim().toLowerCase() || "";
+
+        return dir === "asc" 
+            ? titleA.localeCompare(titleB)
+            : titleB.localeCompare(titleA);
+    });
+
+    container.innerHTML = "";
+    
+    if (excludedCard) {
+        container.appendChild(excludedCard);
+    }
+
+    sortedCards.forEach(card => container.appendChild(card));
+    container.setAttribute("data-sort-dir", dir === "asc" ? "desc" : "asc");
+}
+
+// Добавляем кнопки на сайдбаре(функционал)
+document.querySelectorAll('.nav-item').forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const filter = button.getAttribute('data-filter');
+        filterCards(filter);
+
+        // Обновляем активный класс кнопок
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        button.classList.add('active');
+    });
+});
+
+// Функция для фильтрации карточек по категории
+function filterCards(category) {
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'grid'; // Показываем карточку
+        } else {
+            card.style.display = 'none'; // Скрываем карточку
+        }
+    });
+
+    // Обновляем высоту сайдбара после фильтрации
+    syncSidebarHeight();
+}
+
+
+
+//анимация сайдбара
+const resizeBtn = document.getElementById('resize');
+            resizeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.body.classList.toggle('sb-expand');
+            });
+
+// курсор
+// Проверяем, является ли устройство мобильным
+function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+
+if (!isMobileDevice()) {
+    // курсор
+    const coords = { x: 0, y: 0 };
+    const circles = document.querySelectorAll(".circle");
+
+    const colors = [
+        "#ffb56b", "#fdaf69", "#f89d63", "#f59761", "#ef865e", "#ec805d",
+        "#e36e5c", "#df685c", "#d5585c", "#d1525c", "#c5415d", "#c03b5d",
+        "#b22c5e", "#ac265e", "#9c155f", "#950f5f", "#830060", "#7c0060",
+        "#680060", "#60005f", "#48005f", "#3d005e"
+    ];
+
+    circles.forEach(function (circle, index) {
+        circle.x = 0;
+        circle.y = 0;
+        circle.style.backgroundColor = colors[index % colors.length];
+    });
+
+    window.addEventListener("mousemove", function (e) {
+        coords.x = e.clientX;
+        coords.y = e.clientY;
+    });
+
+    function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+
+        circles.forEach(function (circle, index) {
+            circle.style.left = x - 12 + "px";
+            circle.style.top = y - 12 + "px";
+            circle.style.scale = (circles.length - index) / circles.length;
+
+            circle.x = x;
+            circle.y = y;
+
+            const nextCircle = circles[index + 1] || circles[0];
+            x += (nextCircle.x - x) * 0.3;
+            y += (nextCircle.y - y) * 0.3;
+        });
+
+        requestAnimationFrame(animateCircles);
+    }
+
+    animateCircles();
+}
+
+
+
+// Функция для синхронизации высоты сайдбара и кнопки
+function syncSidebarHeight() {
+    const main = document.querySelector('.dashboard-main');
+    const sidebar = document.querySelector('.dashboard-sidebar');
+    const scrollLink = document.querySelector('#scrollToTopLink');
+
+    // Параметры для высоты
+    const additionalHeight = 220; // Дополнительная высота для сайдбара
+    const minSidebarHeight = 650; // Минимальная высота сайдбара
+    const triggerHeight = 1800; // Высота страницы, при которой показывается кнопка
+
+    // Рассчитываем высоту main и прибавляем дополнительный отступ
+    const computedMainHeight = main.scrollHeight;
+    const newSidebarHeight = Math.max(computedMainHeight + additionalHeight, minSidebarHeight);
+
+    // Применяем высоту сайдбару
+    sidebar.style.height = `${newSidebarHeight}px`;
+
+    // Проверяем текущую высоту сайдбара и страницы
+    if (newSidebarHeight >= triggerHeight) {
+        scrollLink.classList.add('show'); // Показываем кнопку
+    } else {
+        scrollLink.classList.remove('show'); // Скрываем кнопку
+    }
+}
+
+// Функция плавного скролла наверх
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Добавляем обработчики событий
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollLink = document.querySelector('#scrollToTopLink');
+
+    // Синхронизируем высоту при загрузке и изменении контента
+    syncSidebarHeight();
+
+    // Наблюдаем за изменениями внутри .dashboard-main
+    const main = document.querySelector('.dashboard-main');
+    const observer = new MutationObserver(syncSidebarHeight);
+    observer.observe(main, { childList: true, subtree: true });
+
+    // Обновляем высоту при изменении размера окна
+    window.addEventListener('resize', syncSidebarHeight);
+
+    // Обработчик клика для кнопки
+    scrollLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToTop();
+    });
+});
+
+
+
+</script>
+
+
+    </body>
+</html>

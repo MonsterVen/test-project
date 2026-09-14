@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="profile.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="shortcut icon" href="images/smalllogo.png">
+    <title>Вход</title>
+    <style>
+        body::-webkit-scrollbar {
+            width: 0.5em;
+        }
+        body::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: darkgrey;
+            outline: 1px solid slategrey;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-weight: bold;
+            align-items: center;
+            margin-top: 5px;
+        }
+        body {
+            outline: 2px solid #141313;
+            outline-offset: -30px;
+            outline-offset: -32px;
+        }
+        .dashboard-header h1 {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 6em;
+            position: relative;
+            margin: 0;
+            color: transparent;
+            -webkit-text-stroke: 2px #000000;
+        }
+        .dashboard-header h1::after {
+            content: "Авторизация";
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #95a4ff;
+            animation: animate 8s ease-in-out infinite;
+        }
+        @keyframes animate {
+            0%, 100% {
+                clip-path: polygon(
+                    0% 45%, 16% 44%, 33% 50%, 54% 60%,
+                    70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%
+                );
+            }
+            50% {
+                clip-path: polygon(
+                    0% 60%, 15% 65%, 34% 66%, 51% 62%,
+                    67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%
+                );
+            }
+        }
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        #password {
+            width: calc(100% - 40px);
+            padding-right: 40px;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            margin-bottom: 37px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            color: #000;
+        }
+        .toggle-password:hover {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header class="dashboard-header">
+        <h1>Авторизация</h1>
+    </header>
+    <main class="dashboard-main">
+        <div class="contact-us">
+            <form id="login-form" method="POST" action="check_login.php">
+                <input id="username" name="username" placeholder="Name" type="text" required />
+                <div class="password-container">
+                    <input id="password" name="password" placeholder="Password" type="password" required />
+                    <button type="button" class="toggle-password" aria-label="Показать/скрыть пароль">
+                        <i class="fas fa-eye" id="toggle-password-icon"></i>
+                    </button>
+                </div>
+                <button class="buttonform" type="submit">Войти</button>
+                <p id="error-message" style="color: red; font-weight: bold;">
+                    <?php echo isset($_GET['error']) ? htmlspecialchars($_GET['error']) : ''; ?>
+                </p>
+            </form>
+        </div>
+        <button onclick="document.location='index.html'" class="button-52" role="button">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> На главную
+        </button>
+    </main>
+    <script>
+        // Показать/скрыть пароль
+        document.querySelector(".toggle-password").addEventListener("click", function() {
+            const passwordField = document.getElementById("password");
+            const toggleIcon = document.getElementById("toggle-password-icon");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text"; // Показываем пароль
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password"; // Скрываем пароль
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
+        });
+    </script>
+</body>
+</html>
