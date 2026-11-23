@@ -1,0 +1,12 @@
+
+
+v2:
+
+tar -xzf catalog-ubuntu24.tar.gz
+cd catalog-lab
+sudo apt update
+sudo apt install python3 php-cli php-sqlite3 php-mbstring curl
+bash catalog_security/run.sh
+
+В другом терминале:
+bash catalog_security/simulate.sh all
